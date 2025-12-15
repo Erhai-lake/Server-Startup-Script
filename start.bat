@@ -202,15 +202,14 @@ echo !JAR_LOWER! | findstr /i "neoforge" >nul
 if !errorlevel! equ 0 set "IS_NEOFORGE=true"
 
 :: -------------------------------------------------
-:: JVM 参数文件检查(提前, 保证 Forge 安装/启动可用)
+:: JVM 参数文件同步
 :: -------------------------------------------------
-if not exist user_jvm_args.txt (
-    echo 创建 user_jvm_args.txt...
-    echo !JVM_ARGS! > user_jvm_args.txt
-    echo JVM参数已写入: !JVM_ARGS!
-) else (
-    echo user_jvm_args.txt 已存在
-)
+echo 正在同步 JVM 参数到 user_jvm_args.txt...
+(
+    echo !JVM_ARGS!
+) > user_jvm_args.txt
+
+echo JVM 参数已更新: !JVM_ARGS!
 echo.
 
 :: -------------------------------------------------
